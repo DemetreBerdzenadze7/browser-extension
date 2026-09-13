@@ -9,7 +9,7 @@ const FiltersSection = () => {
       </h1>
       <div className="flex items-center justify-center gap-3 mt-6 md:mt-0 ">
         {filterBtns.map((btn) => (
-          <Button className="bg-white text-[#091540] cursor-pointer leading-[1.4] tracking-[-0.3px] text-[20px] rounded-[99px] py-2 px-5 hover:bg-red-700 hover:text-white">
+          <Button className="bg-white text-[#091540] cursor-pointer leading-[1.4] tracking-[-0.3px] text-[20px] rounded-[99px] py-2 px-5 hover:bg-[#fbfdfe] hover:opacity-[0.7] focus:border-3 focus:border-red-400">
             {btn}
           </Button>
         ))}
