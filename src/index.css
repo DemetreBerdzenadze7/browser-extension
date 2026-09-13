@@ -136,3 +136,7 @@ body {
     linear-gradient(to bottom, #ebf2fc, #eefbf9),
     linear-gradient(to bottom, #fff, #fff);
 }
+
+html.dark body {
+  background-image: linear-gradient(to bottom, #111827, #172033);
+}

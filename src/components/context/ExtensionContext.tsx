@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import data from "../../data/data.json";
 
 export interface Data {
@@ -15,6 +15,8 @@ interface ExtensionContextType {
   setIsActive: (value: Data[]) => void;
   filter: Filter;
   setFilter: (value: Filter) => void;
+  isDark: boolean;
+  toggleTheme: () => void;
 }
 
 const ExtensionContext = createContext<ExtensionContextType | null>(null);
@@ -26,10 +28,20 @@ export const ExtensionProvider = ({
 }) => {
   const [isActive, setIsActive] = useState<Data[]>(data);
   const [filter, setFilter] = useState<Filter>("All");
+  const [isDark, setIsDark] = useState(
+    () => localStorage.getItem("theme") === "dark",
+  );
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  }, [isDark]);
+
+  const toggleTheme = () => setIsDark((current) => !current);
 
   return (
     <ExtensionContext.Provider
-      value={{ isActive, setIsActive, filter, setFilter }}
+      value={{ isActive, setIsActive, filter, setFilter, isDark, toggleTheme }}
     >
       {children}
     </ExtensionContext.Provider>
